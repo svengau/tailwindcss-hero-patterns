@@ -1,0 +1,44 @@
+{
+  "name": "tailwindcss-hero-patterns",
+  "version": "0.0.1",
+  "description": "Tailwind CSS plugin to use Hero patterns",
+  "author": {
+    "email": "svengau@gmail.com",
+    "name": "Sven Gaubert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svengau/tailwindcss-hero-patterns"
+  },
+  "bugs": {
+    "url": "https://github.com/svengau/tailwindcss-hero-patterns"
+  },
+  "license": "MIT",
+  "keywords": [
+    "gridsome",
+    "gridsome-plugin",
+    "gridsome-source-plugin",
+    "printful"
+  ],
+  "main": "./src/index.js",
+  "scripts": {
+    "serve": "cross-env NODE_ENV=development concurrently \"postcss docs/tailwind.css -o docs/tailwind.min.css --watch\"  \"live-server ./docs\"",
+    "development": "cross-env NODE_ENV=development postcss docs/tailwind.css -o docs/tailwind.min.css",
+    "production": "cross-env NODE_ENV=production postcss docs/tailwind.css -o docs/tailwind.min.css",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "tailwindcss": "^1.4"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "2.2.0",
+    "concurrently": "5.2.0",
+    "cross-env": "7.0.2",
+    "cssnano": "^4.1.10",
+    "live-server": "^1.2.1",
+    "postcss-cli": "7.1.1",
+    "prettier": "^2.0.5",
+    "tailwindcss-gradients": "^3.0.0"
+  }
+}

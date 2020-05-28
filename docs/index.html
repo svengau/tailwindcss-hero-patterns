@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="stylesheet" href="tailwind.min.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+      defer
+    ></script>
+
+    <script>
+        function copy(id) {
+          var htmlCode = document.getElementById(id);
+          const code = htmlCode.outerHTML
+            .replace(/:class="{((.|\n)*?)}"/ig, '')
+            .replace(/@click="((.|\n)*?)"/ig, '')
+            .replace(/:id="((.|\n)*?)"/ig, '')
+            .replace(/id="((.|\n)*?)"/ig, '')
+            .replace(/x-text="((.|\n)*?)"/ig, '')
+            ;
+          console.log('copy: ' +  code);
+          navigator.clipboard.writeText(code).then(function() {
+//          alert('COPIED! ' + code);
+          console.log('Copying to clipboard was successful!');
+        })
+    }
+    </script>
+  </head>
+  <body
+  class='text-gray-800'
+    x-data="{ 
+      view: 'grid',
+      baseColor: 'red',
+      colors: ['primary', 'red', 'blue', 'green', 'gray', 'orange', 'yellow', 'teal', 'pink', 'indigo'],
+      patterns: ['jigsaw', 'overcast', 'formalinvitation', 'topography', 'texture', 'jupiter', 'architect', 'cutout', 'hideout', 'graphpaper', 'yyy', 'squares', 'fallingtriangles', 'pianoman', 'piefactory', 'dominos', 'hexagons', 'charliebrown', 'autumn', 'temple', 'stampcollection', 'deathstar', 'churchonsunday', 'ilikefood', 'overlappinghexagons', 'fourpointstars', 'bamboo', 'bathroomfloor', 'corkscrew', 'happyintersection', 'kiwi', 'lips', 'lisbon', 'randomshapes', 'steelbeams', 'tinycheckers', 'xequals', 'anchorsaway', 'bevelcircle', 'brickwall', 'fancyrectangles', 'heavyrain', 'overlappingcircles', 'plus', 'roundedplusconnected', 'volcanolamp', 'wiggle', 'bubbles', 'cage', 'connections', 'current', 'diagonalstripes', 'flippeddiamonds', 'floatingcogs', 'glamorous', 'houndstooth', 'leaf', 'linesinmotion', 'moroccan', 'morphingdiamonds', 'rails', 'rain', 'skulls', 'squaresinsquares', 'stripes', 'tictactoe', 'zigzag', 'aztec', 'banknote', 'boxes', 'circlessquares', 'circuitboard', 'curtain', 'diagonallines', 'endlessclouds', 'eyes', 'floortile', 'groovy', 'intersectingcircles', 'melt', 'overlappingdiamonds', 'parkayfloor', 'pixeldots', 'polkadots', 'signal', 'slantedstars', 'wallpaper', 'ellipsis'] }"
+  >
+    <div class="flex flex-col">
+
+        <h1 class="text-3xl text-center lg:text-4xl">Hero Patterns</h1>
+
+        <div class="flex mx-auto justify-center  flex-wrap">
+          <template x-for="item in colors" :key="item">
+            <div
+              @click="baseColor=item"
+              class="w-16 h-16 m-2 text-white text-sm cursor-pointer p-1 leading-none"
+              style="text-shadow: 0 0 2px hsla(0, 0%, 0%, 1)"
+              :class="{ 
+                  [`border border-2`]: item === baseColor,
+                  [`bg-primary-400`]: item ==='primary',
+                  [`bg-red-400`]: item ==='red',
+                  [`bg-blue-400`]: item ==='blue',
+                  [`bg-green-400`]: item ==='green',
+                  [`bg-gray-400`]: item ==='gray',
+                  [`bg-orange-400`]: item ==='orange',
+                  [`bg-yellow-400`]: item ==='yellow',
+                  [`bg-teal-400`]: item ==='teal',
+                  [`bg-pink-400`]: item ==='pink',
+                  [`bg-indigo-400`]: item ==='indigo',
+                  [`bg-purple-400`]: item ==='purple',
+              }"
+              x-text="item"
+            />
+          </template>
+        </div>
+  
+        <h2 class="text-xl text-center lg:text-2xl pt-10 pb-4">Samples</h1>
+          <span class="text-gray-500 text-center">Just click to copy in clipboard</span>
+
+          <div 
+          id="sample1"
+            @click="navigator.clipboard ? copy('sample1') : null"
+          class="flex flex-col m-2 relative pb-10 mb-10"
+              :class="{ 
+                [`bg-primary-400`]: baseColor ==='primary',
+                [`bg-red-400`]: baseColor ==='red',
+                [`bg-blue-400`]: baseColor ==='blue',
+                [`bg-green-400`]: baseColor ==='green',
+                [`bg-gray-400`]: baseColor ==='gray',
+                [`bg-orange-400`]: baseColor ==='orange',
+                [`bg-yellow-400`]: baseColor ==='yellow',
+                [`bg-teal-400`]: baseColor ==='teal',
+                [`bg-pink-400`]: baseColor ==='pink',
+                [`bg-indigo-400`]: baseColor ==='indigo',
+                [`bg-purple-400`]: baseColor ==='purple',
+            }"
+          >
+              <div class="absolute left-0 bg-repeat w-full h-full" 
+            :class="{ 
+              [`heropattern-glamorous-primary-100`]: baseColor ==='primary',
+              [`heropattern-glamorous-red-100`]: baseColor ==='red',
+              [`heropattern-glamorous-blue-100`]: baseColor ==='blue',
+              [`heropattern-glamorous-green-100`]: baseColor ==='green',
+              [`heropattern-glamorous-gray-100`]: baseColor ==='gray',
+              [`heropattern-glamorous-orange-100`]: baseColor ==='orange',
+              [`heropattern-glamorous-yellow-100`]: baseColor ==='yellow',
+              [`heropattern-glamorous-teal-100`]: baseColor ==='teal',
+              [`heropattern-glamorous-pink-100`]: baseColor ==='pink',
+              [`heropattern-glamorous-indigo-100`]: baseColor ==='indigo',
+              [`heropattern-glamorous-purple-100`]: baseColor ==='purple',
+            }"      
+            ></div>
+            <div class="lg:ml-40 z-10 cursor-pointer">
+                <h2 class="mx-10 text-2xl lg:text-3xl my-2 " >Simple example</h2>
+                <p class="mx-10 text-xl lg:text-2xl  max-w-3xl" >
+                  Just click on me to copy the code in the clipboard</p>
+            </div>  
+        </div>
+
+              <div 
+              id="sample1"
+                @click="navigator.clipboard ? copy('sample1') : null"
+              class="flex flex-col m-2 relative pb-10 mb-10"
+                  :class="{ 
+                    [`bg-primary-400`]: baseColor ==='primary',
+                    [`bg-red-400`]: baseColor ==='red',
+                    [`bg-blue-400`]: baseColor ==='blue',
+                    [`bg-green-400`]: baseColor ==='green',
+                    [`bg-gray-400`]: baseColor ==='gray',
+                    [`bg-orange-400`]: baseColor ==='orange',
+                    [`bg-yellow-400`]: baseColor ==='yellow',
+                    [`bg-teal-400`]: baseColor ==='teal',
+                    [`bg-pink-400`]: baseColor ==='pink',
+                    [`bg-indigo-400`]: baseColor ==='indigo',
+                    [`bg-purple-400`]: baseColor ==='purple',
+                }"
+              >
+                  <div class="absolute left-0 bg-repeat w-48 h-full" 
+                style='width: 160px;height: 60px; transform: rotate(227deg) scale(1.5);'
+                :class="{ 
+                  [`heropattern-fallingtriangles-primary-100`]: baseColor ==='primary',
+                  [`heropattern-fallingtriangles-red-100`]: baseColor ==='red',
+                  [`heropattern-fallingtriangles-blue-100`]: baseColor ==='blue',
+                  [`heropattern-fallingtriangles-green-100`]: baseColor ==='green',
+                  [`heropattern-fallingtriangles-gray-100`]: baseColor ==='gray',
+                  [`heropattern-fallingtriangles-orange-100`]: baseColor ==='orange',
+                  [`heropattern-fallingtriangles-yellow-100`]: baseColor ==='yellow',
+                  [`heropattern-fallingtriangles-teal-100`]: baseColor ==='teal',
+                  [`heropattern-fallingtriangles-pink-100`]: baseColor ==='pink',
+                  [`heropattern-fallingtriangles-indigo-100`]: baseColor ==='indigo',
+                  [`heropattern-fallingtriangles-purple-100`]: baseColor ==='purple',
+                }"      
+                ></div>
+                <div 
+                class="hidden lg:block absolute right-0 bg-repeat w-48 h-full transform " 
+                style="background-position:32px"
+                :class="{ 
+                  [`heropattern-floatingcogs-primary-100`]: baseColor ==='primary',
+                  [`heropattern-floatingcogs-red-100`]: baseColor ==='red',
+                  [`heropattern-floatingcogs-blue-100`]: baseColor ==='blue',
+                  [`heropattern-floatingcogs-green-100`]: baseColor ==='green',
+                  [`heropattern-floatingcogs-gray-100`]: baseColor ==='gray',
+                  [`heropattern-floatingcogs-orange-100`]: baseColor ==='orange',
+                  [`heropattern-floatingcogs-yellow-100`]: baseColor ==='yellow',
+                  [`heropattern-floatingcogs-teal-100`]: baseColor ==='teal',
+                  [`heropattern-floatingcogs-pink-100`]: baseColor ==='pink',
+                  [`heropattern-floatingcogs-indigo-100`]: baseColor ==='indigo',
+                  [`heropattern-floatingcogs-purple-100`]: baseColor ==='purple',
+                }"      
+                 ></div>
+                <div class="lg:ml-40">
+                    <h2 class="mx-10 text-2xl lg:text-3xl my-2" >With 2 patterns, no repeat</h2>
+                    <p class="mx-10 text-xl lg:text-2xl  max-w-3xl" >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>  
+            </div>
+
+            <div class="flex flex-col m-2 relative pb-10 mb-10"
+              :class="{ 
+                [`bg-primary-400`]: baseColor ==='primary',
+                [`bg-red-400`]: baseColor ==='red',
+                [`bg-blue-400`]: baseColor ==='blue',
+                [`bg-green-400`]: baseColor ==='green',
+                [`bg-gray-400`]: baseColor ==='gray',
+                [`bg-orange-400`]: baseColor ==='orange',
+                [`bg-yellow-400`]: baseColor ==='yellow',
+                [`bg-teal-400`]: baseColor ==='teal',
+                [`bg-pink-400`]: baseColor ==='pink',
+                [`bg-indigo-400`]: baseColor ==='indigo',
+                [`bg-purple-400`]: baseColor ==='purple',
+            }"
+>
+                <div class="absolute left-0 bg-repeat w-full h-full"
+                :class="{ 
+                  [`heropattern-topography-primary-100`]: baseColor ==='primary',
+                  [`heropattern-topography-red-100`]: baseColor ==='red',
+                  [`heropattern-topography-blue-100`]: baseColor ==='blue',
+                  [`heropattern-topography-green-100`]: baseColor ==='green',
+                  [`heropattern-topography-gray-100`]: baseColor ==='gray',
+                  [`heropattern-topography-orange-100`]: baseColor ==='orange',
+                  [`heropattern-topography-yellow-100`]: baseColor ==='yellow',
+                  [`heropattern-topography-teal-100`]: baseColor ==='teal',
+                  [`heropattern-topography-pink-100`]: baseColor ==='pink',
+                  [`heropattern-topography-indigo-100`]: baseColor ==='indigo',
+                  [`heropattern-topography-purple-100`]: baseColor ==='purple',
+                }"
+                style="background-position:1px" ></div>
+                <div class="absolute left-0 bg-repeat w-full h-full z-0"
+                :class="{ 
+                  [`bg-gradient-r-transparent-to-primary`]: baseColor ==='primary',
+                  [`bg-gradient-r-transparent-to-red`]: baseColor ==='red',
+                  [`bg-gradient-r-transparent-to-blue`]: baseColor ==='blue',
+                  [`bg-gradient-r-transparent-to-green`]: baseColor ==='green',
+                  [`bg-gradient-r-transparent-to-gray`]: baseColor ==='gray',
+                  [`bg-gradient-r-transparent-to-orange`]: baseColor ==='orange',
+                  [`bg-gradient-r-transparent-to-yellow`]: baseColor ==='yellow',
+                  [`bg-gradient-r-transparent-to-teal`]: baseColor ==='teal',
+                  [`bg-gradient-r-transparent-to-pink`]: baseColor ==='pink',
+                  [`bg-gradient-r-transparent-to-indigo`]: baseColor ==='indigo',
+                  [`bg-gradient-r-transparent-to-purple`]: baseColor ==='purple',
+              }"  
+                ></div>
+                <div class="lg:ml-40 z-10">
+                    <h2 class="mx-10 text-3xl my-2" >Combined With gradient</h2>
+                    <div  class="mx-10 text-xl max-w-3xl" >
+                      <p>
+                        Gradients are done using the <a class="underline"
+                        href="https://www.npmjs.com/package/tailwindcss-gradients">tailwindcss-gradients</a> plugin.
+                      </p>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      </p>
+                    </div>
+                </div>
+            </div>
+    
+        <h2 class="text-center text-2xl py-10">Hero Patterns</h1>
+
+
+      <div class="mx-auto text-center inline-flex justify-center w-full">
+        <div
+          class="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex"
+        >
+          <button
+            id="grid"
+            class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-700 focus:text-blue-700 rounded-l-full px-4 py-2 active"
+            :class="{'bg-white text-blue-700 rounded-full': view=='grid'}"
+            @click="view = 'grid'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="fill-current w-4 h-4 mr-2"
+            >
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Grid</span>
+          </button>
+          <button
+            id="list"
+            class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-700 focus:text-blue-700 rounded-r-full px-4 py-2"
+            :class="{'bg-white text-blue-700 rounded-full': view=='list'}"
+            @click="view = 'list'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="fill-current w-4 h-4 mr-2"
+            >
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span>List</span>
+          </button>
+        </div>
+
+        <!--div
+          class="bg-white text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full ml-10"
+        >
+          <select
+            x-model="baseColor"
+            class="h-8 bg-transparent leading-none text-blue-700"
+          >
+            <template x-for="item in colors" :key="item">
+              <option x-value="item" x-text="item"></option>
+            </template>
+          </select>
+        </div-->
+      </div>
+
+      <span class="text-gray-500 text-center pt-4">Just click to copy in clipboard</span>
+
+    <div
+      class="flex w-full p-2 mx-auto text-center justify-center"
+      :class="{ 
+        'inline flex-wrap content-center': view === 'grid',
+        'flex-col': view === 'list',
+      }"
+    >
+  
+      <template x-for="(item, index) in patterns" :key="index" >
+        <div
+          :id="item"
+          class="flex m-2 relative"
+          @click="navigator.clipboard ? copy(item) : null"
+          :class="{ 
+          'w-40 h-40 sm:pb-0 sm:w-48 sm:w-48 sm:h-48 sm:h-48': view === 'grid',
+          'h-48': view === 'list',
+        [`bg-primary-500`]: baseColor ==='primary',
+        [`bg-red-500`]: baseColor ==='red',
+        [`bg-blue-500`]: baseColor ==='blue',
+        [`bg-green-500`]: baseColor ==='green',
+        [`bg-gray-500`]: baseColor ==='gray',
+        [`bg-orange-500`]: baseColor ==='orange',
+        [`bg-yellow-500`]: baseColor ==='yellow',
+        [`bg-teal-500`]: baseColor ==='teal',
+        [`bg-pink-500`]: baseColor ==='pink',
+        [`bg-indigo-500`]: baseColor ==='indigo',
+        [`bg-purple-500`]: baseColor ==='purple',
+      }"
+        >
+          <div
+            class="bg-repeat w-full h-full text-primary-100"
+            :class="{ 
+            [`heropattern-${item}-primary-100`]: baseColor ==='primary',
+            [`heropattern-${item}-red-100`]: baseColor ==='red',
+            [`heropattern-${item}-blue-100`]: baseColor ==='blue',
+            [`heropattern-${item}-green-100`]: baseColor ==='green',
+            [`heropattern-${item}-gray-100`]: baseColor ==='gray',
+            [`heropattern-${item}-orange-100`]: baseColor ==='orange',
+            [`heropattern-${item}-yellow-100`]: baseColor ==='yellow',
+            [`heropattern-${item}-teal-100`]: baseColor ==='teal',
+            [`heropattern-${item}-pink-100`]: baseColor ==='pink',
+            [`heropattern-${item}-indigo-100`]: baseColor ==='indigo',
+            [`heropattern-${item}-purple-100`]: baseColor ==='purple',
+          }"
+          >
+          <div style="text-shadow: 0 0 4px hsla(0, 0%, 0%, 1)" class="text-sm inline" x-text="`heropattern-${item}-${baseColor}-500`">
+        </div>
+      </template>
+
+
+    </div>
+
+    <div class="text-center text-sm py-10">
+      <h2 class="text-xl text-center lg:text-2xl pt-10 pb-4">Credits</h1>
+        patterns from
+      <a
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        href="http://www.heropatterns.com"
+        class="border-b-4 border-gray-400 inline-block"
+        style="height: 20px;"
+        >Steve Schoger</a
+      >
+      / toggle from
+      <a
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        href="https://tailwindcomponents.com/component/gridlist-toggle"
+        class="border-b-4 border-gray-400 inline-block"
+        style="height: 20px;"
+        >Steven Maco</a
+      >
+    </div>
+
+    </div>
+  </body>
+</html>
