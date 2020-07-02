@@ -19,7 +19,7 @@ or
 Just include the plugin:
 
 ```
-    plugins: [
+  plugins: [
     require('tailwindcss-hero-patterns'),
   ],
 ```
