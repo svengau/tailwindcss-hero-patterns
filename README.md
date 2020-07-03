@@ -19,7 +19,7 @@ or
 Just include the plugin:
 
 ```
-    plugins: [
+  plugins: [
     require('tailwindcss-hero-patterns'),
   ],
 ```
@@ -51,7 +51,7 @@ Here is the list of the available templates:
 1. only import the desired patterns:
 
 ```
-const heropatterns = require("tailwindcss-hero-patterns/patterns");
+const heropatterns = require("tailwindcss-hero-patterns/src/patterns");
 
 module.exports = {
   theme: {
