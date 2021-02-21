@@ -56,7 +56,7 @@ const heropatterns = require("tailwindcss-hero-patterns/src/patterns");
 module.exports = {
   theme: {
     heroPatterns: {
-      architect: patterns.architect,
+      architect: heropatterns.architect,
     },
     extend: {
         ...
