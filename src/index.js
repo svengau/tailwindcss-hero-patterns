@@ -35,7 +35,7 @@ module.exports = plugin(
         ([colorName, color]) =>
           (newUtilities[`.heropattern-${name}-${colorName}`] = {
             backgroundImage: pattern
-              .replace("{{color}}", color.replace("#", "%23"))
+              .replace("{{color}}", color.toString().replace("#", "%23"))
               .replace("{{opacity}}", 1), // TODO: maybe map all opacities here
           })
       )
