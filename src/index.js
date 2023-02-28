@@ -31,18 +31,22 @@ module.exports = plugin(
     });
 
     const newUtilities = {};
-    Object.entries(patterns).map(([name, pattern]) =>
-      Object.entries(opacity).map(([opacityName, opacityValue]) =>
-        Object.entries(flattenColors).map(
-          ([colorName, color]) =>
-            (newUtilities[`.heropattern-${name}-${colorName}\\/${opacityName}`] = {
-              backgroundImage: pattern
-                .replace("{{color}}", color.toString().replace("#", "%23"))
-                .replace("{{opacity}}", opacityValue),
-            })
-        )
-      )
-    );
+    Object.entries(patterns).map(([name, pattern]) => {
+      Object.entries(flattenColors).map(([colorName, color]) => {
+        newUtilities[`.pattern-${name}-${colorName}`] = {
+          backgroundImage: pattern
+            .replace("{{color}}", color.toString().replace("#", "%23"))
+            .replace("{{opacity}}", 1),
+        };
+        Object.entries(opacity).map(([opacityName, opacityValue]) => {
+          newUtilities[`.pattern-${name}-${colorName}\\/${opacityName}`] = {
+            backgroundImage: pattern
+              .replace("{{color}}", color.toString().replace("#", "%23"))
+              .replace("{{opacity}}", opacityValue),
+          };
+        });
+      });
+    });
 
     addUtilities(newUtilities);
   },
