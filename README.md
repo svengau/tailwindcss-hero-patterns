@@ -1,5 +1,7 @@
 # Tailwind CSS Hero Patterns
 
+![npm](https://img.shields.io/npm/v/tailwindcss-hero-patterns)
+
 A simple tailwind plugin to display [Hero Patterns](http://www.heropatterns.com/) by [@steveschoger](https://twitter.com/steveschoger).
 
 [DEMO AVAILABLE HERE](https://svengau.github.io/tailwindcss-hero-patterns/)
