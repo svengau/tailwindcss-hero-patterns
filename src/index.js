@@ -5,6 +5,7 @@ const heroPatterns = require("./patterns");
 module.exports = plugin(
   function ({ addUtilities, theme }) {
     const colors = theme("colors", {});
+    const opacity = theme("opacity", {});
     const patterns = theme("heroPatterns", {});
     const allowedShades = Object.values(theme("heroPatternsShades", {}));
     const allowedColors = Object.values(theme("heroPatternsColors", {}));
@@ -29,17 +30,23 @@ module.exports = plugin(
       }
     });
 
-    let newUtilities = {};
-    Object.entries(patterns).map(([name, pattern]) =>
-      Object.entries(flattenColors).map(
-        ([colorName, color]) =>
-          (newUtilities[`.heropattern-${name}-${colorName}`] = {
+    const newUtilities = {};
+    Object.entries(patterns).map(([name, pattern]) => {
+      Object.entries(flattenColors).map(([colorName, color]) => {
+        newUtilities[`.pattern-${name}-${colorName}`] = {
+          backgroundImage: pattern
+            .replace("{{color}}", color.toString().replace("#", "%23"))
+            .replace("{{opacity}}", 1),
+        };
+        Object.entries(opacity).map(([opacityName, opacityValue]) => {
+          newUtilities[`.pattern-${name}-${colorName}\\/${opacityName}`] = {
             backgroundImage: pattern
               .replace("{{color}}", color.toString().replace("#", "%23"))
-              .replace("{{opacity}}", 1), // TODO: maybe map all opacities here
-          })
-      )
-    );
+              .replace("{{opacity}}", opacityValue),
+          };
+        });
+      });
+    });
 
     addUtilities(newUtilities);
   },
