@@ -6,6 +6,7 @@ A simple tailwind plugin to display [Hero Patterns](http://www.heropatterns.com/
 
 [DEMO AVAILABLE HERE](https://svengau.github.io/tailwindcss-hero-patterns/)
 
+[TAILWIND PLAYGROUND](https://play.tailwindcss.com/fnFV9iHnq4)
 ## Installation
 
 `yarn add tailwindcss-hero-patterns`
