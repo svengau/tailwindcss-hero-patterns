@@ -77,6 +77,7 @@ module.exports = {
   theme: {
     heroPatternsShades: ["100", "500"],
     heroPatternsColors: ["blue", "red"],
+    heroPatternsOpacities: ['0, '50', '90', '100'],
   },
 };
 ```
@@ -98,6 +99,10 @@ module.exports = {
   },
 };
 ```
+
+## Contributions & debug
+
+If you want to contribute to this project, or just play with this plugin, here is a [tailwind playground demo](https://play.tailwindcss.com/45NQTo9Uey?file=config) which may interest you.
 
 ## Credits
 

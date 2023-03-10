@@ -4,11 +4,17 @@ const heroPatterns = require("./patterns");
 
 module.exports = plugin(
   function ({ addUtilities, theme }) {
-    const colors = theme("colors", {});
-    const opacity = theme("opacity", {});
-    const patterns = theme("heroPatterns", {});
-    const allowedShades = Object.values(theme("heroPatternsShades", {}));
-    const allowedColors = Object.values(theme("heroPatternsColors", {}));
+    const allowedShades = theme('heroPatternsShades', [])
+    const allowedColors = theme('heroPatternsColors', [])
+    const allowedOpacities = theme('heroPatternsOpacities', ['10', '50', '90'])
+
+    const patterns = theme('heroPatterns', {})
+    const colors = theme('colors', {})
+    const opacity = Object.fromEntries(
+      Object.entries(theme('opacity', {})).filter(
+        ([key]) => !allowedOpacities.length || allowedOpacities.includes(key)
+      )
+    )
 
     // flatten colors
     const flattenColors = {};
@@ -33,16 +39,15 @@ module.exports = plugin(
     const newUtilities = {};
     Object.entries(patterns).map(([name, pattern]) => {
       Object.entries(flattenColors).map(([colorName, color]) => {
+        const coloredPattern = pattern.replace('{{color}}', color.toString().replace('#', '%23'))
+
         newUtilities[`.heropattern-${name}-${colorName}`] = {
-          backgroundImage: pattern
-            .replace("{{color}}", color.toString().replace("#", "%23"))
+          backgroundImage: coloredPattern
             .replace("{{opacity}}", 1),
         };
         Object.entries(opacity).map(([opacityName, opacityValue]) => {
           newUtilities[`.heropattern-${name}-${colorName}\\/${opacityName}`] = {
-            backgroundImage: pattern
-              .replace("{{color}}", color.toString().replace("#", "%23"))
-              .replace("{{opacity}}", opacityValue),
+            backgroundImage: coloredPattern.replace("{{opacity}}", opacityValue),
           };
         });
       });
